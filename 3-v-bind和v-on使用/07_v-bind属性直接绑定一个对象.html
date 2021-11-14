@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="chen">
+    <!-- 如果使用对象绑定属性的效果的话，出来的效果是这样的， class="name age height" -->
+    <div :class="info">陈氏史实</div>
+
+    <!-- 我们需要的是这样的效果 name="chen" age="23" -->
+    <div :="info">陈氏史实2</div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: '#chen',
+      data: function () {
+        return {
+          info: {
+            name: 'chen',
+            age: 23,
+            height: 2.4
+          }
+        }
+
+      },
+      methods: {
+     
+      }
+    }).mount("#app")
+
+  </script>
+
+</body>
+
+</html>

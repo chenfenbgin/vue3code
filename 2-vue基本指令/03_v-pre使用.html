@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+
+  <template id="chen">
+    <!-- v-pre用于跳过元素和他的子元素的编译过程，显示原始的Mustache标签 ；跳过不需要编译的节点，加快编译的速度-->
+    <div>
+      
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: '#chen',
+      data: function () {
+        return {
+
+        }
+
+      },
+      methods: {
+     
+      }
+    }).mount("#app")
+
+  </script>
+
+</body>
+
+</html>

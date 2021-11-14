@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="chen">
+
+    <h2>动漫列表</h2>
+    <ul>
+      <li v-for="(item,index) in movies">{{index + 1}}.{{item}}</li>
+    </ul>
+    <input type="text" v-model="newMovie">
+    <button @click="addMovie">添加电影</button>
+  </template>
+
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: '#chen',
+      data: function () {
+        return {
+          newMovie: "",
+          movies: [
+            "火影忍者",
+            "斗罗大陆",
+            "斗破苍穹"
+          ],
+
+        }
+
+      },
+      methods: {
+        addMovie() {
+          //Vue将被监听的组数的变更方法进行了包裹，他们也会触发视图更新；
+          //这些方法有： push() pop() shift() unshift() sort() reverse(), 这些方法是会修改我们的数组的
+          //filter() concat() slice()不会修改数组， 而是生成了新的数组替换
+          this.movies.push(this.newMovie);
+          this.newMovie = "";
+
+          this.movies = this.movies.filter((item) => item.length > 2)
+          console.log(this.movies);
+        }
+      }
+    }).mount("#app")
+
+  </script>
+
+</body>
+
+</html>
