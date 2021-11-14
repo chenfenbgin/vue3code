@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2 class="counter">0</h2>
+    <button class="increment" @click="increment">+1</button>
+    <button class="decrement" @click="decrement">-1</button>
+
+    <script>
+        //1.获取所有的元素
+        const counterEL = document.querySelector(".counter")
+        const incrementEL = document.querySelector(".increment")
+        const decrementEL = document.querySelector(".decrement")
+
+        //2.定义变量
+        let counter = 100;
+        counterEL.innerHTML = counter;
+
+        //3.监听按钮的点击
+        incrementEL.addEventListener('click', () =>{
+            counter += 1;
+            counterEL.innerHTML = counter;
+        })
+        
+        decrementEL.addEventListener('click', () =>{
+            counter -= 1;
+            counterEL.innerHTML = counter;
+        })
+        
+    </script>
+
+</body>
+</html>
