@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="chen">
+    <!-- 只有点击回车才触发
+         默认情况下，v-model在进行双向绑定时，绑定的是input事件，那么会在每次内容输入后就将最新的值和绑定的属性进行同步；
+         如果我们在v-model后跟上lazy修饰符，那么会将绑定的事件切换为 change 事件，只有在提交时（比如回车）才会触发；
+    -->
+    <!-- 1.lazy修饰符 -->
+    <!-- <input type="text" v-model.lazy="message"> -->
+
+
+    <!-- 2.number修饰符 -->
+    <!-- <input type="text" v-model.number="message"> //一旦赋值，就会转换为string -->
+    
+    
+    <input type="text" v-model.trim="message">
+    <h2>{{message}}</h2>
+    <button @click="getType">查看数据类型</button>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: '#chen',
+      data: function () {
+        return {
+          // message: 'hello world'
+          message: 1000   //message总是string类型，即使在我们设置type为number也是string类型；如果我们希望转换为数字类型，那么可以使用 .number 修饰符：
+        }
+
+      },
+      methods: {
+        getType(){
+          console.log(this.message, typeof this.message)
+        }
+      }
+    }).mount("#app")
+
+  </script>
+
+</body>
+
+</html>
