@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- 比如我们注册了三个全局组件：ComponentA、ComponentB、ComponentC；
+       在开发中我们只使用了ComponentA、ComponentB，如果ComponentC没有用到但是我们依然在全局进行了注册，
+       那么就意味着类似于webpack这种打包工具在打包我们的项目时，我们依然会对其进行打包； 
+       这样最终打包出的JavaScript包就会有关于ComponentC的内容，用户在下载对应的JavaScript时也会增加包的大小；
+   -->
+
+  <template id="chen">
+    <h2>{{message}} </h2>
+    <component-a></component-a>
+  </template>
+
+
+  <template id="component-a">
+    <h2>我是组件a </h2>
+    <p>我是内容 </p>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+
+    const ComponentA = {
+      template: '#component-a'
+    }
+
+
+    const App = {
+      template: '#chen',
+      // 局部注册
+      components: {
+        //key： 组件名称
+        //value: 组件对象
+        ComponentA: ComponentA
+      },
+      data() {
+        return {
+          message: 'hello world'
+        }
+      }
+    }
+
+    const app = Vue.createApp(App);
+    app.mount('#app')
+
+  </script>
+
+</body>
+
+</html>
