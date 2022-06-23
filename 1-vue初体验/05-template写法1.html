@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app">哈哈哈</div>
 
-<body>
-  <div id="app">
-    哈哈哈
-  </div>
-
-  <script type="x-template" id="chen">
+    <script type="x-template" id="chen">
       <div>
         <h2>{{message}}</h2>
         <h2>{{counter}}</h2>
@@ -22,36 +19,33 @@
       </div>
     </script>
 
-  <script src="./js/vue.js"></script>
-  <script>
-    Vue.createApp({
-      /**
-       * 在执行createApp的对象中 ，如果我们传入的template以#开头，
-       * 它会被用作querySeletor,并且使用匹配元素的innerHTML作为模板字符串；
-       * 
-       * 内部执行document.querySeletor("#chen")?
-       */
-      template: '#chen',
-      data: function () {
-        return {
-          message: 'hello world vue.js',
-          counter: 100,
-        }
-
-      },
-      methods: {
-        increment() {
-          console.log("点击了加1")
-          this.counter++;
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        /**
+         * 在执行createApp的对象中 ，如果我们传入的template以#开头，
+         * 它会被用作querySeletor,并且使用匹配元素的innerHTML作为模板字符串；
+         *
+         * 内部执行document.querySeletor("#chen"),也就是拿到该标签的内容，放到这里template: ''
+         */
+        template: "#chen",
+        data: function () {
+          return {
+            message: "hello world vue.js",
+            counter: 100,
+          };
         },
-        decrement() {
-          console.log("点击了减1")
-          this.counter--;
-        }
-      }
-    }).mount("#app")
-  </script>
-
-</body>
-
+        methods: {
+          increment() {
+            console.log("点击了加1");
+            this.counter++;
+          },
+          decrement() {
+            console.log("点击了减1");
+            this.counter--;
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>

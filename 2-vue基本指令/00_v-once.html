@@ -11,11 +11,14 @@
     <div id="app"></div>
 
     <template id="chen">
-      <!-- 如果使用对象绑定属性的效果的话，出来的效果是这样的， class="name age height" -->
-      <div :class="info">陈氏史实</div>
+      <h2>{{counter}}</h2>
 
-      <!-- 我们需要的是这样的效果 name="chen" age="23" -->
-      <div :="info">陈氏史实2</div>
+      <!-- 只渲染一次，并且是所有子组件都不会渲染的 -->
+      <div v-once>
+        <h2>{{counter}}</h2>
+        <h2>{{message}}</h2>
+      </div>
+      <button @click="increment">+1</button>
     </template>
 
     <script src="https://unpkg.com/vue@3"></script>
@@ -24,14 +27,15 @@
         template: "#chen",
         data: function () {
           return {
-            info: {
-              name: "chen",
-              age: 23,
-              height: 2.4,
-            },
+            counter: 100,
+            message: "hello",
           };
         },
-        methods: {},
+        methods: {
+          increment() {
+            this.counter++;
+          },
+        },
       }).mount("#app");
     </script>
   </body>

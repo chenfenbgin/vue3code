@@ -1,42 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-  <div id="app"></div>
-
-  <template id="chen">
-    <div :class="['abc', title]">
-      哈哈哈
-    </div>
-    <!-- 数组里允许嵌套对象语法 -->
-    <div :class="['abc', title, isActive ? 'active': '', {}]">哈哈哈a</div>
-  </template>
-
-  <script src="../js/vue.js"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          title: "ddd",
-          isActive: true
-        }
-
-      },
-      methods: {
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .active {
+        color: red;
       }
-    }).mount("#app")
+    </style>
+  </head>
 
-  </script>
+  <body>
+    <div id="app"></div>
 
-</body>
+    <template id="chen">
+      <div :class="['abc', title]">哈哈哈</div>
+      <!-- 数组里允许嵌套对象语法、三元运算符 -->
+      <div :class="['abc', title, isActive ? 'active': '', {active: isActive}]">
+        哈哈哈a
+      </div>
+    </template>
 
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            title: "ddd",
+            isActive: true,
+          };
+        },
+        methods: {},
+      }).mount("#app");
+    </script>
+  </body>
 </html>

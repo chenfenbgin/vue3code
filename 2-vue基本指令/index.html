@@ -12,26 +12,21 @@
   <div id="app"></div>
 
   <template id="chen">
-    <h2> {{ firstName + " " + lastName}}</h2>
-    <h2> {{score >= 60 ? "及格" : "不及格"}}</h2>
-    <h2> {{message.split(" ").reverse().join(" ")}}</h2>
+    <div></div>
   </template>
 
-   <script src="https://unpkg.com/vue@3"></script>
+ <script src="https://unpkg.com/vue@3"></script>
   <script>
     Vue.createApp({
       template: '#chen',
       data: function () {
         return {
-          firstName: 'chen',
-          lastName: 'ping',
-          score: 90,
-          message: 'hello world '
+
         }
 
       },
       methods: {
-
+     
       }
     }).mount("#app")
 

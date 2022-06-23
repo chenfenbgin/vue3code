@@ -1,68 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-
-  <style>
-    .active {
-      color: red;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="app"></div>
-
-  <template id="chen">
-    <!-- 对象语法： {'active': boolean} 当后面的值为true是，active才会绑定进来 -->
-
-    <!-- 也可以有多个键值对.  'active'单引号可以不加的 -->
-    <div :class="{'active': isActive, 'title': true}">小陈必胜</div>
-
-    <!-- 默认的class 和动态的class 结合 -->
-    <div class="abc dde " :class="{'active': isActive, 'title': true}">小陈必胜</div>
-
-    <button @click="toggle">切换</button>
-
-    <!-- 将对象放到一个单独的属性中 -->
-    <div class="abc dde " :class="classObj">小陈必胜</div>
-
-    <!-- 将返回的对象放到一个methods方法中, 当然也可以使用computed-->
-    <div class="abc dde " :class="getClassObj()">小陈必胜</div>
-
-  </template>
-
-  <script src="../js/vue.js"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          message: "hello world",
-          isActive: false,
-          classObj: { active: true, title: true },
-
-        }
-
-      },
-      methods: {
-        toggle() {
-          this.isActive = !this.isActive;
-        },
-        getClassObj() {
-          return {
-            active: true, title: true
-          }
-        }
+    <style>
+      .active {
+        color: red;
       }
-    }).mount("#app")
+    </style>
+  </head>
 
-  </script>
+  <body>
+    <div id="app"></div>
 
-</body>
+    <template id="chen">
+      <!-- 对象语法： {'active': boolean} 当后面的值为true是，active才会绑定进来 -->
 
+      <!-- 也可以有多个键值对.  'active'单引号可以不加的 -->
+      <div :class="{'active': isActive, 'title': true}">小陈必胜</div>
+
+      <!-- 默认的class 和动态的class 结合 -->
+      <div class="abc dde" :class="{'active': isActive, 'title': true}">
+        小陈必胜
+      </div>
+
+      <button @click="toggle">切换</button>
+
+      <!-- 将对象放到一个单独的属性中 -->
+      <div class="abc dde" :class="classObj">小陈必胜</div>
+
+      <!-- 将返回的对象放到一个methods方法中, 当然也可以使用computed-->
+      <div class="abc dde" :class="getClassObj()">小陈必胜</div>
+    </template>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            message: "hello world",
+            isActive: false,
+            classObj: { active: true, title: true },
+          };
+        },
+        methods: {
+          toggle() {
+            this.isActive = !this.isActive;
+          },
+          getClassObj() {
+            return {
+              active: true,
+              title: true,
+            };
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>

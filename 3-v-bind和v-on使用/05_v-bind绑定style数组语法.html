@@ -1,44 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app"></div>
 
-<body>
-  <div id="app"></div>
+    <template id="chen">
+      <!-- 两个对象属性会进行合并 -->
+      <div :style="[styleObj, styleObj1]">hhh</div>
+    </template>
 
-  <template id="chen">
-    <!-- 两个对象属性会进行合并 -->
-    <div :style="[styleObj, styleObj1]">hhh</div>
-  </template>
-
-  <script src="../js/vue.js"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          styleObj: {
-            color: "red",
-            fontSize: '23px'
-          },
-          styleObj1: {
-            textDecoration: "underline"
-          }
-        }
-
-      },
-      methods: {
-
-      }
-    }).mount("#app")
-
-  </script>
-
-</body>
-
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            styleObj: {
+              color: "red",
+              fontSize: "23px",
+            },
+            styleObj1: {
+              textDecoration: "underline",
+            },
+          };
+        },
+        methods: {},
+      }).mount("#app");
+    </script>
+  </body>
 </html>

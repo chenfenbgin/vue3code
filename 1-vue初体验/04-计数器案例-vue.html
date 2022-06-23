@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- template属性： 就是我们要渲染的信息，我们看到的html标签，这些标签会替换掉到我们挂载的innerHTML上 -->
     <div id="app">
-        <!-- 这里的内容在挂载之前是会被清空的。 -->
-        哈哈哈
+      <!-- 这里的内容在挂载之前是会被清空的。 -->
+      哈哈哈
     </div>
 
-    <script src="./js/vue.js"></script>
+    <!-- <script src="./js/vue.js"></script> -->
+    <script src="https://unpkg.com/vue@3"></script>
     <script>
-        Vue.createApp({
-            template: `
+      Vue.createApp({
+        template: `
                 <div>
                     <h2>{{message}}</h2>
                     <h2>{{counter}}</h2>
@@ -26,26 +26,24 @@
                     <button @click="decrement">-1</button>
                 </div>
             `,
-            data: function () {
-                return {
-                    message: 'hello world vue.js',
-                    counter: 100,
-                }
-
-            },
-            methods: {
-                increment() {
-                    console.log("点击了加1")
-                    this.counter++;
-                },
-                decrement() {
-                    console.log("点击了减1")
-                    this.counter--;
-                }
-            }
-        }).mount("#app")
+        data: function () {
+          // 下面的这些属性是可以被加入到响应式中的，并且可以在上面的模板中使用
+          return {
+            message: "hello world vue.js",
+            counter: 100,
+          };
+        },
+        methods: {
+          increment() {
+            console.log("点击了加1");
+            this.counter++;
+          },
+          decrement() {
+            console.log("点击了减1");
+            this.counter--;
+          },
+        },
+      }).mount("#app");
     </script>
-
-</body>
-
+  </body>
 </html>
