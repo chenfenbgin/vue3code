@@ -1,65 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app"></div>
 
-<body>
-  <div id="app"></div>
+    <template id="chen">
+      <button @click="changeFullName">修改按钮</button>
 
-  <template id="chen">
+      <h2>{{ fullname }}</h2>
+    </template>
 
-    <button @click="changeFullName">修改按钮</button>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            firstName: "chen",
+            lastName: "ping",
+          };
+        },
+        computed: {
+          //fullName 的 getter方法，后面跟的是一个函数，这个getter方法在我们使用计算属性的时候会进行调用
+          // fullName: function() {
+          //   console.log("computed");
+          //   return this.firstName + " " + this.lastName;
+          // },
 
-    <h2> {{ fullname }}</h2>
-
-  </template>
-
-   <script src="https://unpkg.com/vue@3"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          firstName: 'chen',
-          lastName: 'ping'
-        }
-
-      },
-      computed: {
-        //fullName 的 getter方法，后面跟的是一个函数
-        // fullName: function() {
-        //   console.log("computed");
-        //   return this.firstName + " " + this.lastName;
-        // }, 
-        //计算属性的完整写法
-        fullname: {
-          get: function () {
-            return this.firstName + " " + this.lastName;
+          //计算属性的完整写法
+          fullname: {
+            get: function () {
+              return this.firstName + " " + this.lastName;
+            },
+            // 给计算属性设置新的值
+            set: function (newValue) {
+              const names = newValue.split(" ");
+              this.firstName = names[0];
+              this.lastName = names[1];
+              console.log("设置计算属性的值", newValue);
+            },
           },
-          // 给计算属性设置新的值
-          set: function (newValue) {
-            const names = newValue.split(" ");
-            this.firstName = names[0]
-            this.lastName = names[1]
-            console.log("设置计算属性的值", newValue)
-          }
-        }
-      },
-      methods: {
-        changeFullName() {
-          // 一旦给计算属性复制， 就会调他的set方法,
-          this.fullname = "chen bairen"
-        }
-      }
-    }).mount("#app")
-
-  </script>
-
-</body>
-
+        },
+        methods: {
+          changeFullName() {
+            // 一旦给计算属性赋值， 就会调他的set方法,
+            this.fullname = "chen bairen";
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>

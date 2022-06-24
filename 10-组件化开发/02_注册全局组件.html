@@ -26,8 +26,8 @@
 
     <template id="component-b">
       <!-- div是一个块级元素，独占一行，如果不加上的话，跟上面组件的点击按钮处于同一行 -->
-      <div> 
-        <input type="text" v-model="message"/>
+      <div>
+        <input type="text" v-model="message" />
         <h2>{{message}}</h2>
       </div>
     </template>
@@ -36,7 +36,7 @@
       <h2>ComponentC</h2>
     </template>
 
-     <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue@3"></script>
     <script>
       const App = {
         template: "#my-app",
@@ -50,7 +50,7 @@
         template: "#component-a",
         data() {
           return {
-            title: "我是标题",    //组件中也可以有自己的东西， data methods
+            title: "我是标题", //组件中也可以有自己的东西， data methods
             desc: "我是内容, 哈哈哈哈哈",
           };
         },
@@ -70,9 +70,9 @@
         },
       });
 
-      app.component('ComponentName', {
-        template: "#component-c"
-      })
+      app.component("ComponentName", {
+        template: "#component-c",
+      });
 
       app.mount("#app");
     </script>

@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app"></div>
 
-<body>
-  <div id="app"></div>
+    <template id="chen">
+      <!-- 第一种实现: 分了两步： 
+        1.v-bind value的绑定 
+        2.监听input事件，更新message的值 
+      -->
+      <input type="text" :value="message" @input="inputChange" />
+      <!-- 等价于 @input事件： 只要输入修改， 事件立马触发-->
+      <input
+        type="text"
+        :value="message"
+        @input="message = $event.target.value"
+      />
 
-  <template id="chen">
-    <!-- 第一种实现: 分了两步， 1.v-bind value的绑定 2.监听input事件，更新message的值 -->
-    <input type="text" :value="message" @input="inputChange">
-    <!-- 等价于 @input事件： 只要输入修改， 事件立马触发-->
-    <input type="text" :value="message" @input="message = $event.target.value">
+      <!-- 第二种实现 -->
+      <input type="text" v-model="message" />
+      <h2>{{message}}</h2>
+    </template>
 
-
-    <!-- 第二种实现 -->
-    <input type="text" v-model="message">
-    <h2>{{message}}</h2>
-  </template>
-
-   <script src="https://unpkg.com/vue@3"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          message: 'hell world'
-        }
-
-      },
-      methods: {
-        inputChange(event){
-          this.message = event.target.value;
-        }
-      }
-    }).mount("#app")
-
-  </script>
-
-</body>
-
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            message: "hell world",
+          };
+        },
+        methods: {
+          inputChange(event) {
+            this.message = event.target.value;
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>

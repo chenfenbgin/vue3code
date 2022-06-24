@@ -1,75 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app"></div>
 
-<body>
-  <div id="app"></div>
+    <template id="chen">
+      <h2>{{ info.name}}</h2>
+      <!-- <h2>{{ info.nba.name}}</h2> -->
+      <button @click="changeInfo">改变info</button>
 
-  <template id="chen">
-    <h2>{{ info.name}}</h2>
-    <h2>{{ info.nba.name}}</h2>
-    <button @click="changeInfo">改变info</button>
-    <button @click="changeInfoName">改变info中的name</button>
-    <button @click="changeInfoNbaName">改变info.nba.中的name</button>
-  </template>
+      <!-- 上面的<h2>{{ info.name}}</h2>是可以发送改变的，但是watch中没侦听到 -->
+      <button @click="changeInfoName">改变info中的name</button>
+      <button @click="changeInfoNbaName">改变info.nba.中的name</button>
+    </template>
 
-   <script src="https://unpkg.com/vue@3"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data() {
-        return {
-          info: { name: "chen", age: 13, nba: { name: 'xiao' } }
-        }
-      },
-      // watch 可以跟函数、对象、数组
-      watch: {
-        // info(newInfo, oldInfo){
-        //   console.log("newInfo: ", newInfo, "oldValue", oldInfo)
-        // }
-
-        // 上面的写法，跟下面的写法是一样的
-        // info: {
-        //   handler: function (newInfo, oldInfo) {
-        //     // 打印的值一样，是因为他两个用的是同一个引用，如果需要监听旧的值，需要拷贝一份
-        //     // console.log("newInfo: ", newInfo, "oldValue", oldInfo)
-        //     console.log("newInfo:", newInfo.info, "oldValue", oldInfo.info)
-        //   },
-        //   deep: true,   // 深度监听，可以监听到changeInfoName函数中的改变
-        //   immediate: true //  深度监听/立即执行（一定会执行一次）
-        // },
-
-        // 监听info里面的name，还有另一个种写法：
-        "info.name": function (newValue, oldValue) {
-          console.log("newValue, oldValue", newValue, oldValue)
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data() {
+          return {
+            info: { name: "chen", age: 13, nba: { name: "xiao" } },
+          };
         },
+        // watch 可以跟函数、对象、数组
+        watch: {
+          // info(newInfo, oldInfo){
+          //   console.log("newInfo: ", newInfo, "oldValue", oldInfo)
+          // }
 
+          // 方式一： 深度监听， 不管多深都可以侦听到的
+          // 上面的写法，跟下面的写法是一样的
+          // info: {
+          //   handler: function (newInfo, oldInfo) {
+          //     // 打印的值一样，是因为他两个用的是同一个引用，如果需要监听旧的值，需要拷贝一份
+          //     // console.log("newInfo: ", newInfo, "oldValue", oldInfo)
+          //     console.log("newInfo:", newInfo.info, "oldValue", oldInfo.info)
+          //   },
+          //   deep: true,   // 深度监听，可以监听到changeInfoName函数中的改变
+          //   immediate: true //  深度监听/立即执行（一定会执行一次）
+          // },
 
-
-
-      },
-      methods: {
-        changeInfo() {
-          this.info = { name: 'ping' }
+          // 方式二： 监听info里面的name，还有另一个种写法：
+          "info.name": function (newValue, oldValue) {
+            console.log("newValue, oldValue", newValue, oldValue);
+          },
         },
-        // watch 无法监听到， 默认情况下我们的监听器只会针对监听的 数据本身的改变，（内部发生的改变是不能监听的）
-        changeInfoName() {
-          this.info.name = "hahha"
+        methods: {
+          changeInfo() {
+            this.info = { name: "ping" };
+          },
+          // watch 无法监听到， 默认情况下我们的监听器只会针对监听的 数据本身的改变，（内部发生的改变是不能监听的）
+          changeInfoName() {
+            this.info.name = "hahha";
+          },
+          changeInfoNbaName() {
+            this.info.nba.name = "辰";
+          },
         },
-        changeInfoNbaName() {
-          this.info.nba.name = "辰"
-        }
-      }
-    }).mount("#app")
-
-  </script>
-
-</body>
-
+        created() {
+          // 方式三： this.$watch
+          // 可以有返回值
+          const unwatch = this.$watch(
+            "info.name",
+            function (newValue, oldValue) {
+              console.log("------", newValue, oldValue);
+            },
+            {
+              deep: true,
+              immediate: true,
+            }
+          );
+          // 调用unwatch可以取消监听
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>

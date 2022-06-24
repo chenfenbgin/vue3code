@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app"></div>
 
-<body>
-  <div id="app"></div>
-
-  <template id="chen">
-    <!-- 这样加的话，我们渲染出来会多一个div元素，我们可以将 div 改为 template,
+    <template id="chen">
+      <!-- 这样加的话，我们渲染出来会多一个div元素，我们可以将 div 改为 template,
          template最终是不会存在的
     -->
-    <!-- <div v-if="isShowHa">
+      <!-- <div v-if="isShowHa">
       <h2>哈哈哈</h2>
       <h2>哈哈哈</h2>
       <h2>哈哈哈</h2>
@@ -26,36 +25,29 @@
       <h2>呵呵呵</h2>
     </div> -->
 
-    <template v-if="isShowHa">
-      <h2>哈哈哈</h2>
-      <h2>哈哈哈</h2>
-      <h2>哈哈哈</h2>
+      <template v-if="isShowHa">
+        <h2>哈哈哈</h2>
+        <h2>哈哈哈</h2>
+        <h2>哈哈哈</h2>
+      </template>
+      <template v-else>
+        <h2>呵呵呵</h2>
+        <h2>呵呵呵</h2>
+        <h2>呵呵呵</h2>
+      </template>
     </template>
-    <template v-else>
-      <h2>呵呵呵</h2>
-      <h2>呵呵呵</h2>
-      <h2>呵呵呵</h2>
-    </template>
 
-  </template>
-
-   <script src="https://unpkg.com/vue@3"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          isShowHa: true,
-        }
-
-      },
-      methods: {
-
-      }
-    }).mount("#app")
-
-  </script>
-
-</body>
-
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            isShowHa: true,
+          };
+        },
+        methods: {},
+      }).mount("#app");
+    </script>
+  </body>
 </html>

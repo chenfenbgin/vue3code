@@ -1,62 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app"></div>
 
-<body>
-  <div id="app"></div>
+    <template id="chen">
+      <button @click="changeFirstName">修改按钮</button>
 
-  <template id="chen">
+      <h2>{{ fullName}}</h2>
+      <h2>{{ fullName}}</h2>
+      <h2>{{ fullName}}</h2>
 
-    <button @click="changeFirstName">修改按钮</button>
+      <!-- data中的数据是响应式的，只要发生改变，就会刷新页面 -->
+      <h2>{{ getFullName() }}</h2>
+      <h2>{{ getFullName() }}</h2>
+      <h2>{{ getFullName() }}</h2>
+    </template>
 
-    <h2> {{ fullName}}</h2>
-    <h2> {{ fullName}}</h2>
-    <h2> {{ fullName}}</h2>
-
-    <!-- data中的数据是响应式的，只要发生改变，就会刷新页面 -->
-    <h2> {{ getFullName() }}</h2>
-    <h2> {{ getFullName() }}</h2>
-    <h2> {{ getFullName() }}</h2>
-  </template>
-
-   <script src="https://unpkg.com/vue@3"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          firstName: 'chen',
-          lastName: 'ping'
-        }
-
-      },
-      computed: {
-        // 计算属性是有缓存的，当我们多次使用计算属性时，计算属性中的运算只有执行一次。
-        // 计算属性会随着依赖的数据(firstName)的改变，而重新进行计算
-        fullName() {
-          console.log("computed");
-          return this.firstName + " " + this.lastName;
-        }
-      },
-      methods: {
-        getFullName() {
-          console.log("methods");
-          return this.firstName + " " + this.lastName;
-        }, 
-        changeFirstName(){
-          this.firstName = "madongmei"
-        }
-      }
-    }).mount("#app")
-
-  </script>
-
-</body>
-
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            firstName: "chen",
+            lastName: "ping",
+          };
+        },
+        computed: {
+          // 计算属性是有缓存的，当我们多次使用计算属性时，计算属性中的运算只有执行一次。
+          // 计算属性会随着依赖的数据(firstName)的改变，而重新进行计算
+          fullName() {
+            console.log("computed");
+            return this.firstName + " " + this.lastName;
+          },
+        },
+        methods: {
+          getFullName() {
+            console.log("methods");
+            return this.firstName + " " + this.lastName;
+          },
+          changeFirstName() {
+            this.firstName = "madongmei";
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>
