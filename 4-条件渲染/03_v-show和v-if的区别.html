@@ -1,46 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app"></div>
 
-<body>
-  <div id="app"></div>
-
-  <template id="chen">
-    <!-- v-show和v-if的区别：
+    <template id="chen">
+      <!-- v-show和v-if的区别：
         v-show不支持template;
         v-show不可以和v-else使用
 
          v-show无论是否需要显示到浏览器上，他的Dom实际时有渲染的，只是通过css的属性display来进行切换
          v-if为false,他对应的元素不会被渲染到 Dom 中
     -->
-    <h2 v-if="isShow">哈哈哈哈</h2>
-    <h2 v-show="isShow">哈哈哈哈</h2>
+      <h2 v-if="isShow">哈哈哈哈</h2>
+      <h2 v-show="isShow">哈哈哈哈</h2>
+    </template>
 
-  </template>
-
-  <script src="../js/vue.js"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          isShow: !true,
-        }
-
-      },
-      methods: {
-
-      }
-    }).mount("#app")
-
-  </script>
-
-</body>
-
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            isShow: !true,
+          };
+        },
+        methods: {},
+      }).mount("#app");
+    </script>
+  </body>
 </html>

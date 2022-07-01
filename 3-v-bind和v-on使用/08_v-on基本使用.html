@@ -1,59 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-
-  <style>
-    .area {
-      width: 300px;
-      height: 300px;
-      background: red;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="app"></div>
-
-  <template id="chen">
-    <!-- 完整写法： v-on:监听的事件="methods中的方法" -->
-    <button @click="btnClick">按钮1</button>
-    <div class="area" @mousemove="mouse">区域</div>
-
-    <!-- 可以绑定一个表达式： inline statement -->
-    <button @click="counter++">{{counter}}</button>
-
-    <!-- 可以绑定一个对象，绑定多个方法 -->
-    <div class="area" @="{click: btnClick, mousemove: mouse}">{{counter}}</div>
-
-  </template>
-
-  <script src="../js/vue.js"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          counter: 1100,
-        }
-
-      },
-      methods: {
-        btnClick() {
-          console.log("点击了按钮1");
-        },
-        mouse() {
-          console.log("在area里面移动");
-        }
+    <style>
+      .area {
+        width: 300px;
+        height: 300px;
+        background: red;
       }
-    }).mount("#app")
+    </style>
+  </head>
 
-  </script>
+  <body>
+    <div id="app"></div>
 
-</body>
+    <template id="chen">
+      <!-- 完整写法： v-on:监听的事件="methods中的方法" -->
+      <!-- <button v-on:click="btnClick">按钮1</button> -->
+      <button @click="btnClick">按钮1</button>
+      <div class="area" @mousemove="mouse">区域</div>
 
+      <!-- 可以绑定一个表达式： inline statement -->
+      <button @click="counter++">{{counter}}</button>
+
+      <!-- 可以绑定一个对象，绑定多个方法 -->
+      <div class="area" v-on="{click: btnClick, mousemove: mouse}">
+        <!-- 语法糖 -->
+      <div class="area" @="{click: btnClick, mousemove: mouse}">
+        {{counter}}
+      </div>
+    </template>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            counter: 1100,
+          };
+        },
+        methods: {
+          btnClick() {
+            console.log("点击了按钮1");
+          },
+          mouse() {
+            console.log("在area里面移动");
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>

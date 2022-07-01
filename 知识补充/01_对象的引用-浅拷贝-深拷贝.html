@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+  <!-- 1.对象的引用赋值 -->
+  <script>
+    // 对象是引用类型
+    const info = { name: 'chen', age: 13 }
+    const obj = info; // 其实是将info的内存地址赋值给 obj。引用赋值
+    obj.name = 'ping';
+    console.log(info);    //打印出来的是： {name:'chen', age:13}
+  </script>
+
+
+  <!-- 2.对象的浅拷贝 -->
+  <script>
+    const info = { name: 'chen', age: 13 }
+    const obj = Object.assign({}, info);  //其实是创建出一个新对象， 将info对象里面所有的属性，拷贝一份放到{}里面,然后将对象返回出去，给obj
+    info.name = '陈'
+    console.log(obj.name)   //还是打印chen
+
+    // 这里又包含了一个对象，info里面其实保存的是friend的内存地址，指向另一个地址
+    const info1 = { name: 'chen', age: 13, friend: { name: '陈', age: 23 } }
+    const obj1 = Object.assign({}, info1); //这个时候在执行拷贝操作
+    info1.friend.name = '成';
+    console.log(obj1.friend.name);  //'这个时候打印的是' '成'。friend引用仍然指向同一个对象
+  </script>
+
+
+  <!-- 3.对象的深拷贝 -->
+  <script>
+    const info2 = { name: 'chen', age: 13, friend: { name: '陈', age: 23 } }
+    // 第一种方法, 先将info2对象字符串，再还原成一个新的对象
+    const obj2 = JSON.parse(JSON.stringify(info2))
+    info2.friend.name = '臣';
+    console.log(obj2.friend.name);  //还是打印 '陈'
+
+    // 第二种方法，借助有lodash库
+    const info3 = { name: 'chen', age: 13, friend: { name: '陈', age: 23 } }
+    const obj3 = _.clone(info3);    //浅拷贝
+    info3.name = '辰'
+    console.log('obj3===', obj3)    // { name: 'chen', age: 13, friend: { name: '陈', age: 23 } 
+    info3.friend.name = '白'
+    console.log('obj', obj3)        // { name: 'chen', age: 13, friend: { name: '白', age: 23 } 
+
+  </script>
+</body>
+
+</html>

@@ -1,73 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app"></div>
 
-<body>
-  <div id="app"></div>
+    <template id="chen">
+      <!-- v-for遍历数组 -->
+      <h2>动漫列表</h2>
+      <ul>
+        <li v-for="(item,index) in movies">{{index + 1}}.{{item}}</li>
+      </ul>
 
-  <template id="chen">
+      <!-- v-for遍历对象属性 -->
+      <h2>个人中心</h2>
+      <ul>
+        <!-- 如果只写一个，拿到的是value的值，Chen, 12, 12.2 -->
+        <li v-for="value in info">{{value}}</li>
+      </ul>
 
-    <!-- v-for遍历数组 -->
-    <h2>动漫列表</h2>
-    <ul>
-      <li v-for="(item,index) in movies">{{index + 1}}.{{item}}</li>
-    </ul>
+      <ul>
+        <li v-for="(value,key) in info">{{value}}-{{key}}</li>
+      </ul>
 
-    <!-- v-for遍历对象属性 -->
-    <h2>个人中心</h2>
-    <ul>
-      <!-- 如果只写一个，拿到的是value的值，Chen, 12, 12.2 -->
-      <li v-for="value in info">{{value}}</li>
-    </ul>
+      <ul>
+        <li v-for="(value, key, index) in info">{{value}}-{{key}}-{{index}}</li>
+      </ul>
 
-    <ul>
-      <li v-for="(value,key) in info">{{value}}-{{key}}</li>
-    </ul>
+      <!-- 遍历数字 -->
+      <ul>
+        <li v-for="(num, index) in 10">{{num}}-{{index}}</li>
+      </ul>
+    </template>
 
-    <ul>
-      <li v-for="(value, key, index) in info">{{value}}-{{key}}-{{index}}</li>
-    </ul>
-
-    <!-- 遍历数字 -->
-    <ul>
-      <li v-for="(num, index) in 10">{{num}}-{{index}}</li>
-    </ul>
-
-  </template>
-
-
-  <script src="../js/vue.js"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          movies: [
-            "火影忍者",
-            "斗罗大陆",
-            "斗破苍穹"
-          ],
-          info: {
-            name: "Chen",
-            age: 12,
-            height: 12.2
-          }
-        }
-
-      },
-      methods: {
-
-      }
-    }).mount("#app")
-
-  </script>
-
-</body>
-
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            movies: ["火影忍者", "斗罗大陆", "斗破苍穹"],
+            info: {
+              name: "Chen",
+              age: 12,
+              height: 12.2,
+            },
+          };
+        },
+        methods: {},
+      }).mount("#app");
+    </script>
+  </body>
 </html>

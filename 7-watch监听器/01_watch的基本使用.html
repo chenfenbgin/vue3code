@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <template id="chen">
+      <input type="text" v-model="question" />
+      <button @click="queryAnswer">查找答案</button>
+      <h2>{{answer}}</h2>
+    </template>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            // 监听question的变化时，去进行一下逻辑的处理（javascript, 网络请求）
+            question: "hello world",
+            answer: "",
+          };
+        },
+        // watch 一般监听data里面的数据，很少用来监听计算属性
+        watch: {
+          // question： 监听的data中属性的名称，当然我们可以监听props里面的
+          // newValue: 变化后的新值
+          // oldValue: 变化前的旧值
+          question(newValue, oldValue) {
+            console.log("新值", newValue);
+            console.log("旧值", oldValue);
+            this.queryAnswer();
+          },
+        },
+        methods: {
+          queryAnswer() {
+            console.log(`你的问题${this.question}的答案呢是哈哈哈哈`);
+            this.answer = "哈哈哈哈哈哈哈哈哈哈";
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

@@ -1,48 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app"></div>
 
-<body>
-  <div id="app"></div>
+    <template id="chen">
+      <!-- 默认传入event对象，可以在方法中直接获取 -->
+      <button @click="btnClick">按钮1</button>
 
-  <template id="chen">
-    <!-- 默认传入event对象，可以在方法中直接获取 -->
-    <button @click="btnClick">按钮1</button>
+      <!-- $event可以获取到事件发生时的事件对象 -->
+      <button @click="btnClick1($event, 'chen')">按钮1</button>
+    </template>
 
-    <!-- $event可以获取到事件发生时的事件对象 -->
-    <button @click="btnClick1($event, 'chen')">按钮1</button>
-  </template>
-
-  <script src="../js/vue.js"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-
-        }
-
-      },
-      methods: {
-        // vue内部默认传过来event对象
-        btnClick(){
-          console.log(event);
-        }, 
-        btnClick1(event, name){
-          console.log(event);
-          console.log(name);
-        }
-      }
-    }).mount("#app")
-
-  </script>
-
-</body>
-
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {};
+        },
+        methods: {
+          // vue内部默认传过来event对象
+          btnClick() {
+            console.log(event);
+          },
+          btnClick1(event, name) {
+            console.log(event);
+            console.log(name);
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>

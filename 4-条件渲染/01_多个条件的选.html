@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app"></div>
 
-<body>
-  <div id="app"></div>
-
-  <!-- v-if时惰性的，
+    <!-- v-if时惰性的，
        当条件为false时，其判断的内容完全不会被渲染或者会被销毁
        当条件为true时，才会真正渲染条件块中的内容；
   -->
-  <template id="chen">
-    <h2 v-if="score > 90">优秀</h2>
-    <h2 v-else-if="score > 60">良好</h2>
-    <h2 v-else>不及格</h2>
-  </template>
+    <template id="chen">
+      <h2 v-if="score > 90">优秀</h2>
+      <h2 v-else-if="score > 60">良好</h2>
+      <h2 v-else>不及格</h2>
+    </template>
 
-  <script src="../js/vue.js"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          score: 90
-        }
-
-      },
-      methods: {
-     
-      }
-    }).mount("#app")
-
-  </script>
-
-</body>
-
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            score: 90,
+          };
+        },
+        methods: {},
+      }).mount("#app");
+    </script>
+  </body>
 </html>

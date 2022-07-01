@@ -11,14 +11,9 @@
     <div id="app"></div>
 
     <template id="chen">
-      <ul>
-        <!-- 第一次，渲染成四个 vNode, 在渲染成真实的四个Dom上的node
-           插入f之后，怎么插入性能最高。使用diff算法， 把原理的vnode和新的vnode进行对比
-           v
-      -->
-        <li v-for="(item, index) in letters" >{{item}}</li>
-      </ul>
-      <button @click="insertF">插入f元素</button>
+      <h2>{{ fullName}}</h2>
+      <h2>{{ score }}</h2>
+      <h2>{{ getReverse }}</h2>
     </template>
 
     <script src="https://unpkg.com/vue@3"></script>
@@ -27,13 +22,22 @@
         template: "#chen",
         data: function () {
           return {
-            letters: ["a", "b", "c", "d"],
+            firstName: "chen",
+            lastName: "ping",
+            score: 90,
+            message: "hello world ",
           };
         },
-        methods: {
-          insertF() {
-            // 插入数组后，会重新渲染，
-            this.letters.splice(2, 0, "f");
+        computed: {
+          // 定义了一个计算属性叫fullnamee
+          fullName() {
+            return this.firstName + " " + this.lastName;
+          },
+          score() {
+            return this.score >= 60 ? "及格" : "不及格";
+          },
+          getReverse() {
+            return this.message.split(" ").reverse().join(" ");
           },
         },
       }).mount("#app");

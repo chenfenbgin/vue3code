@@ -1,72 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app">哈哈哈</div>
 
-<body>
-  <div id="app">
-    哈哈哈
-  </div>
-
-  <!-- 这个template是html中默认就有的，而且template里面的东西是不会被浏览器渲染的；
+    <!-- 这个template是html中默认就有的，而且template里面的东西是不会被浏览器渲染的；
        虽然解析器在加载页面时确实会加载<template>元素的内容，但这样做只是确保内容有效，
-       但内容时不会被渲染的。
+       但内容时不会被渲染的。这个是被JavaScript使用的， vue会读取
+
+       如果这里template -> 改成div,这里是会渲染两次的
   -->
-  <template id="chen">
-    <div>
-      <h2>{{message}}</h2>
-      <h2>{{counter}}</h2>
-      <button @click="increment">+1</button>
-      <button @click="decrement">-1</button>
-    </div>
-  </template>
+    <template id="chen">
+      <div>
+        <h2>{{message}}</h2>
+        <h2>{{counter}}</h2>
+        <button @click="increment">+1</button>
+        <button @click="decrement">-1</button>
+      </div>
+    </template>
 
-  <script src="./js/vue.js"></script>
-  <script>
-    Vue.createApp({
-      template: '#chen',
-      data: function () {
-        return {
-          message: 'hello world vue.js',
-          counter: 100,
-        }
-
-      },
-      methods: {
-        increment() {
-          console.log("点击了加1")
-          this.counter++;
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      Vue.createApp({
+        template: "#chen",
+        data: function () {
+          return {
+            message: "hello world vue.js",
+            counter: 100,
+          };
         },
-        decrement() {
-          console.log("点击了减1")
-          this.counter--;
-        }
-        //不可以使用箭头函数的方式写
-        // btnClick: () => {
-        //   // this === window? 不可以
-        //   // 写成箭头函数时，这个this就是一个window
-        //   // 在箭头函数中时不绑定this的
-        //   console.log(this);
-        // }
-      }
-    }).mount("#app")
+        methods: {
+          increment() {
+            console.log("点击了加1");
+            this.counter++;
+          },
+          decrement() {
+            console.log("点击了减1");
+            this.counter--;
+          },
+          //不可以使用箭头函数的方式写
+          // btnClick: () => {
+          //   // this === window? 不可以
+          //   // 写成箭头函数时，这个this就是一个window
+          //   // 在箭头函数中时不绑定this的
+          //   console.log(this);
+          // }
+        },
+      }).mount("#app");
 
-    const foo = function () {
-      console.log(this);    //this是 window
-    }
-    foo();      //this是 window, 这个函数在执行的时候，其实是会做一个window的绑定的，也就是window.foo(); 隐式绑定
+      const foo = function () {
+        console.log(this); //this是 window
+      };
+      foo(); //this是 window, 这个函数在执行的时候，其实是会做一个window的绑定的，也就是window.foo(); 隐式绑定
 
-    const obj = { bar: foo };
-    obj.bar();              //obj
-
-
-  </script>
-
-</body>
-
+      const obj = { bar: foo };
+      obj.bar(); //obj
+    </script>
+  </body>
 </html>
