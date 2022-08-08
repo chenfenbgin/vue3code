@@ -28,7 +28,7 @@
       <button @click="counter++">{{counter}}</button>
 
       <!-- 可以绑定一个对象，绑定多个方法 -->
-      <div class="area" v-on="{click: btnClick, mousemove: mouse}">
+      <div class="area" v-on="{click: btnClick, mousemove: mouse, click: btnClick2}">
         <!-- 语法糖 -->
       <div class="area" @="{click: btnClick, mousemove: mouse}">
         {{counter}}
@@ -47,6 +47,9 @@
         methods: {
           btnClick() {
             console.log("点击了按钮1");
+          },
+          btnClick2(){
+            console.log('点击了按钮2')
           },
           mouse() {
             console.log("在area里面移动");
