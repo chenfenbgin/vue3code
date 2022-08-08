@@ -10,11 +10,21 @@
   <body>
     <div id="app"></div>
 
+    <!-- 
+      v-bind 在这种场景下的行为略有不同：
+        当 isButtonDisabled 为真值或一个空字符串 (即 <button disabled="">) 时，
+        元素会包含这个 disabled attribute。而当其为其他假值时 attribute 将被忽略。
+     -->
+     
     <!-- vue2 template模板中只能有一个根元素 -->
     <!-- vue3 template模板中允许有两个或多个根元素 -->
     <template id="chen">
       <img :src="imgUrl" />
       <a :href="link">百度一下</a>
+      <div :id="ivalue">绑定id是null/undefined不显示</div>
+      <div :id="`list-${id}`" v-for="id of ids">{{id}}</div>
+      <div>{{timer}}</div>
+      <button :disabled="isButtonDisabled">Button</button>
     </template>
 
     <script src="https://unpkg.com/vue@3"></script>
@@ -23,9 +33,18 @@
         template: "#chen",
         data: function () {
           return {
+            ids: [1, 2, 3],
+            ivalue: undefined,
             imgUrl: "https://avatars.githubusercontent.com/u/54337779?s=40&v=4",
             link: "https://www.baidu.com",
+            isButtonDisabled: "",
           };
+        },
+        computed: {
+          timer() {
+            // 这并不是响应式
+            return Date.now();
+          },
         },
         methods: {},
       }).mount("#app");
