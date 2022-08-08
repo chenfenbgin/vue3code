@@ -1,1 +1,3 @@
-# vue3code c1 test
+# vue3code c1 test 
+
+npm run dev
